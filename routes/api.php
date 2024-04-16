@@ -31,7 +31,7 @@ Route::prefix('auth')->group(function () {
 
 // Routes for AdminController
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/courses', [AdminController::class, 'index']);
     Route::post('/courses', [AdminController::class, 'store']);
     Route::get('/courses/{id}', [AdminController::class, 'show']);
@@ -65,7 +65,7 @@ Route::prefix('admin')->group(function () {
 });
 
 // Routes for StudentController
-Route::prefix('student')->group(function () {
+Route::prefix('student')->middleware('student')->group(function () {
     Route::get('/courses', [StudentController::class, 'index']);
     Route::post('/comments', [StudentController::class, 'leaveComment']);
     Route::post('/register', [StudentController::class, 'registerForCourse']);
